@@ -24,7 +24,8 @@ Module : Kubernetes.OpenAPI.Model
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE TupleSections #-}
 {-# LANGUAGE TypeFamilies #-}
-{-# OPTIONS_GHC -fno-warn-unused-matches -fno-warn-unused-binds -fno-warn-unused-imports #-}
+{-# OPTIONS_GHC -fno-warn-unused-matches -fno-warn-unused-binds -fno-warn-unused-imports -fsimplifier-phases=1 -fmax-simplifier-iterations=1 #-}
+
 
 module Kubernetes.OpenAPI.Model (module Kubernetes.OpenAPI.Model, module Kubernetes.OpenAPI.ImportMappings) where
 
