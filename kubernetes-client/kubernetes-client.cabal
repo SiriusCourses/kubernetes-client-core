@@ -31,7 +31,6 @@ library
       Kubernetes.Client
       Kubernetes.Client.Auth.Basic
       Kubernetes.Client.Auth.ClientCert
-      Kubernetes.Client.Auth.GCP
       Kubernetes.Client.Auth.Internal.Types
       Kubernetes.Client.Auth.OIDC
       Kubernetes.Client.Auth.Token
@@ -40,7 +39,6 @@ library
       Kubernetes.Client.Internal.TLSUtils
       Kubernetes.Client.KubeConfig
       Kubernetes.Client.Watch
-      Kubernetes.Data.K8sJSONPath
   other-modules:
       Paths_kubernetes_client
   hs-source-dirs:
@@ -63,7 +61,6 @@ library
     , http-client >=0.5 && <0.8
     , http-client-tls >=0.3
     , jose-jwt >=0.8
-    , jsonpath >=0.1 && <0.3
     , kubernetes-client-core ==0.5.0.0
     , microlens >=0.4
     , mtl >=2.2
@@ -109,7 +106,6 @@ test-suite example
     , http-client >=0.5 && <0.8
     , http-client-tls >=0.3
     , jose-jwt >=0.8
-    , jsonpath >=0.1 && <0.3
     , kubernetes-client
     , kubernetes-client-core ==0.5.0.0
     , microlens >=0.4
@@ -140,7 +136,6 @@ test-suite spec
       Kubernetes.Client.Auth.ClientCertSpec
       Kubernetes.Client.Auth.TokenFileSpec
       Kubernetes.Client.KubeConfigSpec
-      Kubernetes.Data.K8sJSONPathSpec
       Paths_kubernetes_client
   hs-source-dirs:
       test
@@ -164,7 +159,6 @@ test-suite spec
     , http-client >=0.5 && <0.8
     , http-client-tls >=0.3
     , jose-jwt >=0.8
-    , jsonpath >=0.1 && <0.3
     , kubernetes-client
     , kubernetes-client-core ==0.5.0.0
     , microlens >=0.4
