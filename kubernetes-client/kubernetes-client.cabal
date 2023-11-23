@@ -152,7 +152,7 @@ test-suite spec
     , base >=4.7 && <5.0
     , base64-bytestring
     , bytestring >=0.10
-    , connection >=0.2
+    , crypton-connection >=0.2
     , containers >=0.5
     , data-default-class >=0.1
     , either >=5.0
