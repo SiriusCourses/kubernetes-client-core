@@ -2,12 +2,14 @@
 module Kubernetes.Data.K8sJSONPathSpec where
 
 import Test.Hspec
-import Test.Hspec.Attoparsec
+import Test.Hspec.Megaparsec
+import qualified Text.Megaparsec as P
 
 import Kubernetes.Data.K8sJSONPath
 import Data.Text
 import Data.JSONPath
 import Data.Aeson
+import Data.Void 
 
 spec :: Spec
 spec = do
@@ -31,3 +33,5 @@ spec = do
             val = (object ["kind" .= ("Pod" :: Text)])
         runJSONPath path val `shouldBe` Right "kind is Pod"
 
+(~>) :: Text -> Parser [K8sPathElement] -> Either (P.ParseErrorBundle Text Void) [K8sPathElement]
+s ~> p = P.parse p "" s

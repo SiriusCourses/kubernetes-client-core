@@ -15,7 +15,6 @@ import Data.Either.Combinators
 import Data.Function                         ((&))
 import Data.Map                              (Map)
 import Data.Maybe
-import Data.Monoid                           ((<>))
 import Data.Text
 import Data.Text.Encoding                    (encodeUtf8)
 import Data.Time.Clock.POSIX                 (getPOSIXTime)
@@ -60,7 +59,7 @@ instance AuthMethod OIDCAuth where
       $ setHeader req [("Authorization", "Bearer " <> (Text.encodeUtf8 token))]
       & L.set rAuthTypesL []
 
-data OIDCGetTokenException = OIDCOAuthException (OAuth2Error OAuth2TokenRequest.Errors)
+data OIDCGetTokenException = OIDCOAuthException OAuth2TokenRequest.TokenResponseError
                            | OIDCURIException URIParseError
                            | OIDCGetTokenException String
   deriving Show

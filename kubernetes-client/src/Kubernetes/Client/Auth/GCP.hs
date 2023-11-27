@@ -6,12 +6,10 @@ where
 
 import Control.Concurrent.STM
 import Control.Exception.Safe                (Exception, throwM)
-import Data.Attoparsec.Text
 import Data.Either.Combinators
 import Data.Function                         ((&))
 import Data.JSONPath
 import Data.Map                              (Map)
-import Data.Monoid                           ((<>))
 import Data.Text                             (Text)
 import Data.Time.Clock
 import Data.Time.LocalTime
@@ -27,6 +25,7 @@ import qualified Data.Map           as Map
 import qualified Data.Text          as Text
 import qualified Data.Text.Encoding as Text
 import qualified Lens.Micro         as L
+import qualified Text.Megaparsec as P
 
 -- TODO: Add support for scopes based token fetching
 data GCPAuth = GCPAuth { gcpAccessToken :: TVar(Maybe Text)
@@ -126,7 +125,7 @@ parseGCPAuthInfo authInfo = do
         Just expiryText -> Just <$> parseExpiryTime expiryText
     lookupEither key = Map.lookup key authInfo
                        & maybeToRight (GCPAuthMissingInformation $ Text.unpack key)
-    parseK8sJSONPath = parseOnly (k8sJSONPath <* endOfInput)
+    parseK8sJSONPath = mapLeft P.errorBundlePretty . P.parse (k8sJSONPath <* P.eof) ""
     readJSONPath key defaultPath =
       maybe (Right defaultPath) parseK8sJSONPath $ Map.lookup key authInfo
 
